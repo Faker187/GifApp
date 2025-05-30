@@ -1,0 +1,10 @@
+name: First Jobs deploy example
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, world!"
