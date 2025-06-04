@@ -30,4 +30,4 @@ jobs:
         run: echo "Hola ${{ github.ref }}"
 
       - name: Obtener msj de la variable
-        run: echo "Hola ${{ needs:first_job.outputs.my_variable }}"
+        run: echo "Hola ${{ needs.first_job.outputs.my_variable }}"
