@@ -14,20 +14,11 @@ jobs:
       my_variable: HolaMundo
 
     steps:
-      - name: Hola Mundo
-        run: echo "Hola $NAME"
-
-      - name: Working dir
-        id: step1
-        run: echo "my_variable=HolaMundo" >> $GITHUB_OUTPUT
-
-  second_job:
-    needs: first_job
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Hola Mundo
-        run: echo "Hola ${{ github.ref }}"
-
-      - name: Obtener msj de la variable
-        run: echo "Hola ${{ needs.first_job.outputs.my_variable }}"
+      - name: Generar archivo
+        run: |
+          echo "Archivo de prueba, hola" >> test.log
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-test
+          path: ./test.log
