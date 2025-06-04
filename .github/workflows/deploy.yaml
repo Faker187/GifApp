@@ -17,8 +17,22 @@ jobs:
       - name: Generar archivo
         run: |
           echo "Archivo de prueba, hola" >> test.log
+
       - name: Subir artefacto
         uses: actions/upload-artifact@v4
         with:
           name: archivo-test
           path: ./test.log
+  
+  first_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-test
+      
+      - name: Cat file
+        run: |
+          cat test.log
