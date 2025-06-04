@@ -1,4 +1,4 @@
-name: First Jobs deploy example
+name: Example First deploy
 on:
   push:
     branches:
