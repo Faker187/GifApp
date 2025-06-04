@@ -7,32 +7,11 @@ jobs:
   first_job:
     
     runs-on: ubuntu-latest
-    env:
-      NAME: Benjamin
+    strategy:
+      matrix:
+        message: [hello, world, benjamin]
     
-    outputs: 
-      my_variable: HolaMundo
-
     steps:
-      - name: Generar archivo
+      - name: Print msj
         run: |
-          echo "Archivo de prueba, hola" >> test.log
-
-      - name: Subir artefacto
-        uses: actions/upload-artifact@v4
-        with:
-          name: archivo-test
-          path: ./test.log
-  
-  second_job:
-    runs-on: ubuntu-latest
-
-    needs: first_job
-    steps:
-      - name: Descargar artefacto
-        uses: actions/download-artifact@v4
-        with:
-          name: archivo-test
-      
-      - name: Cat file
-        run: cat test.log
+          echo ${{ matrix.message }}
